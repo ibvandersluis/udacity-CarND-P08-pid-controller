@@ -6,7 +6,13 @@ This is the eighth project in the Udacity Self-Driving Car Engineer Nanodegree: 
 
 This is an implementation of a PID controller to direct the steering of a simulated vehicle around a circuit.
 For this implementation the speed is constant with the throttle staying at the same value throughout.
-The main input to the PID controller is the cross-track error, or the lateral distance from the vehicle to the route.
+The main input to the PID controller is the cross-track error (CTE), or the lateral distance from the vehicle to the route.
+
+The components of the PID controller are:
+
+- P: The effect proportionate to the current CTE
+- I: The effect with respect to the integral (sum) of all CTEs
+- D: The effect with respect to the derivative (change in) the current CTE
 
 The core PID equation is:
 
@@ -18,8 +24,8 @@ where
 
 ```
 p_error_ = current_cte;
-d_error_ = current_cte - previous_cte;
 i_error_ = sum of all cte;
+d_error_ = current_cte - previous_cte;
 ```
 
 Tuning the PID coefficients was made more difficult by the track being curved and therefore trickier to evaluate whether the result was stable.
