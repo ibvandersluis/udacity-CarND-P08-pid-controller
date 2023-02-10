@@ -9,9 +9,11 @@ PidController::PidController() {}
 
 PidController::~PidController() {}
 
-void PidController::init(double Kp_, double Ki_, double Kd_)
+void PidController::init(double Kp, double Ki, double Kd)
 {
-  // TODO: Initialize PID coefficients (and errors, if needed)
+  Kp_ = Kp;
+  Ki_ = Ki;
+  Kd_ = Kd;
 }
 
 void PidController::update_error(double cte)
