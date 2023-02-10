@@ -4,6 +4,35 @@ This is the eighth project in the Udacity Self-Driving Car Engineer Nanodegree: 
 
 ## Description
 
+This is an implementation of a PID controller to direct the steering of a simulated vehicle around a circuit.
+For this implementation the speed is constant with the throttle staying at the same value throughout.
+The main input to the PID controller is the cross-track error, or the lateral distance from the vehicle to the route.
+
+The core PID equation is:
+
+```
+total_error = -Kp_ * p_error_ - Ki_ * i_error_ - Kd_ * d_error_
+```
+
+where
+
+```
+p_error_ = current_cte;
+d_error_ = current_cte - previous_cte;
+i_error_ = sum of all cte;
+```
+
+Tuning the PID coefficients was made more difficult by the track being curved and therefore trickier to evaluate whether the result was stable.
+The PID coefficients were tuned using the methods described in [this article](https://pidexplained.com/how-to-tune-a-pid-controller/) with the following results:
+
+```
+Kp = 0.1
+Ki = 0.0007
+Kd = 1.0
+```
+
+The `Kd` coefficient seems to introduce some jerky steering around corners, but it's unclear how to mitigate that.
+
 ## Requirements
 
 - cmake >= 3.5
@@ -77,7 +106,7 @@ To run this project as intended, you will need the [Term 2 Udacity Simulator](ht
 
 1. Run the PID controller
 ```console
-./pid
+./pid_controller
 ```
 You should get back:
 ```
@@ -89,6 +118,6 @@ When you do this, the particle filter executable should report:
 ```
 Connected!!!
 ```
-3. The vehicle should start moving automatically.
+3. The vehicle should start moving automatically and stay on the track.
 
-![Path Planning Simulation](https://user-images.githubusercontent.com/14826664/217097418-4c27159a-2005-4fda-b83d-48755101d3be.png)
+![Path Planning Simulation](https://user-images.githubusercontent.com/14826664/218141814-cd1ba582-b6b1-4017-9418-50a1a03389e3.png)
