@@ -3,8 +3,6 @@
 namespace pid_controller
 {
 
-// TODO: Complete the PID class. You may add any additional desired functions.
-
 PidController::PidController() {}
 
 PidController::~PidController() {}
