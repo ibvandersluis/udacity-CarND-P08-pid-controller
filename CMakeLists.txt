@@ -1,26 +1,21 @@
-project(PID)
-
 cmake_minimum_required (VERSION 3.5)
+project(udacity_pid_controller)
 
 add_definitions(-std=c++11)
 
-set(CXX_FLAGS "-Wall")
-set(CMAKE_CXX_FLAGS "${CXX_FLAGS}")
+add_compile_options(-Werror)
+# add_compile_options(-Wall -Wextra -pedantic -Werror)
 
 set(sources src/PID.cpp src/main.cpp)
 
-include_directories(/usr/local/include)
-link_directories(/usr/local/lib)
+include_directories(
+  include
+  /usr/include
+)
 
-if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin") 
+add_executable(pid_controller
+  src/main.cpp
+  src/pid_controller.cpp
+)
 
-include_directories(/usr/local/opt/openssl/include)
-link_directories(/usr/local/opt/openssl/lib)
-link_directories(/usr/local/Cellar/libuv/1*/lib)
-
-endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin") 
-
-
-add_executable(pid ${sources})
-
-target_link_libraries(pid z ssl uv uWS)
+target_link_libraries(pid_controller z ssl uv uWS)
