@@ -4,47 +4,47 @@
 namespace pid_controller
 {
 
-  class PidController
-  {
-  public:
-    PidController();
+class PidController
+{
+public:
+  PidController();
 
-    virtual ~PidController();
+  virtual ~PidController();
 
-    /**
+  /**
      * Initialize PID.
      * @param (Kp_, Ki_, Kd_) The initial PID coefficients
      */
-    void Init(double Kp_, double Ki_, double Kd_);
+  void Init(double Kp_, double Ki_, double Kd_);
 
-    /**
+  /**
      * Update the PID error variables given cross track error.
      * @param cte The current cross track error
      */
-    void UpdateError(double cte);
+  void UpdateError(double cte);
 
-    /**
+  /**
      * Calculate the total PID error.
      * @output The total PID error
      */
-    double TotalError();
+  double TotalError();
 
-  private:
-    /**
+private:
+  /**
      * PID Errors
      */
-    double p_error;
-    double i_error;
-    double d_error;
+  double p_error;
+  double i_error;
+  double d_error;
 
-    /**
+  /**
      * PID Coefficients
      */
-    double Kp;
-    double Ki;
-    double Kd;
-  };
+  double Kp;
+  double Ki;
+  double Kd;
+};
 
-}
+}  // namespace pid_controller
 
-#endif // PID_CONTROLLER__PID_CONTROLLER_HPP
+#endif  // PID_CONTROLLER__PID_CONTROLLER_HPP
