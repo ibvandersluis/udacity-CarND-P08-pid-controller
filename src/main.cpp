@@ -17,7 +17,7 @@ int main()
   uWS::Hub h;
 
   pid_controller::PidController steer_pid;
-  steer_pid.init(0.1, 0.0007, 1.0);
+  steer_pid.init(0.08, 0.0002, 1.3);
 
   h.onMessage(
     [&steer_pid](uWS::WebSocket<uWS::SERVER> ws, char * data, size_t length, uWS::OpCode opCode) {
