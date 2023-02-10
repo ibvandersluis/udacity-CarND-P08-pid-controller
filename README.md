@@ -29,7 +29,7 @@ d_error_ = current_cte - previous_cte;
 ```
 
 Tuning the PID coefficients was made more difficult by the track being curved and therefore trickier to evaluate whether the result was stable.
-The PID coefficients were tuned using the methods described in [this article](https://pidexplained.com/how-to-tune-a-pid-controller/) with the following results:
+The PID coefficients were tuned using the manual tuning methods described in [this article](https://pidexplained.com/how-to-tune-a-pid-controller/) with the following results:
 
 ```
 Kp = 0.1
