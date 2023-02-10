@@ -9,17 +9,17 @@ PidController::PidController() {}
 
 PidController::~PidController() {}
 
-void PidController::Init(double Kp_, double Ki_, double Kd_)
+void PidController::init(double Kp_, double Ki_, double Kd_)
 {
   // TODO: Initialize PID coefficients (and errors, if needed)
 }
 
-void PidController::UpdateError(double cte)
+void PidController::update_error(double cte)
 {
   // TODO: Update PID errors based on cte.
 }
 
-double PidController::TotalError()
+double PidController::total_error()
 {
   // TODO: Calculate and return the total error
   return 0.0;  // TODO: Add your total error calc here!

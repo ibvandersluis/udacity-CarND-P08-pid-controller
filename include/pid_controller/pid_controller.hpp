@@ -8,41 +8,20 @@ class PidController
 {
 public:
   PidController();
-
   virtual ~PidController();
 
-  /**
-     * Initialize PID.
-     * @param (Kp_, Ki_, Kd_) The initial PID coefficients
-     */
-  void Init(double Kp_, double Ki_, double Kd_);
-
-  /**
-     * Update the PID error variables given cross track error.
-     * @param cte The current cross track error
-     */
-  void UpdateError(double cte);
-
-  /**
-     * Calculate the total PID error.
-     * @output The total PID error
-     */
-  double TotalError();
+  void init(double Kp, double Ki, double Kd);
+  void update_error(double cte);
+  double total_error();
 
 private:
-  /**
-     * PID Errors
-     */
-  double p_error;
-  double i_error;
-  double d_error;
+  double Kp_;
+  double Ki_;
+  double Kd_;
 
-  /**
-     * PID Coefficients
-     */
-  double Kp;
-  double Ki;
-  double Kd;
+  double p_error_;
+  double i_error_;
+  double d_error_;
 };
 
 }  // namespace pid_controller

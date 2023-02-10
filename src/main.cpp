@@ -6,26 +6,11 @@
 
 #include "nlohmann/json.hpp"
 #include "pid_controller/pid_controller.hpp"
+#include "udacity/uws.hpp"
 
 // for convenience
 using nlohmann::json;
 using std::string;
-
-// Checks if the SocketIO event has JSON data.
-// If there is data the JSON object in string format will be returned,
-// else the empty string "" will be returned.
-string hasData(string s)
-{
-  auto found_null = s.find("null");
-  auto b1 = s.find_first_of("[");
-  auto b2 = s.find_last_of("]");
-  if (found_null != string::npos) {
-    return "";
-  } else if (b1 != string::npos && b2 != string::npos) {
-    return s.substr(b1, b2 - b1 + 1);
-  }
-  return "";
-}
 
 int main()
 {
@@ -42,7 +27,7 @@ int main()
       // The 4 signifies a websocket message
       // The 2 signifies a websocket event
       if (length && length > 2 && data[0] == '4' && data[1] == '2') {
-        auto s = hasData(string(data).substr(0, length));
+        auto s = udacity::uws::has_data(string(data).substr(0, length));
 
         if (s != "") {
           auto j = json::parse(s);
