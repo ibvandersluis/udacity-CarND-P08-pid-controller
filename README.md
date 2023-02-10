@@ -32,12 +32,25 @@ Tuning the PID coefficients was made more difficult by the track being curved an
 The PID coefficients were tuned using the manual tuning methods described in [this article](https://pidexplained.com/how-to-tune-a-pid-controller/) with the following results:
 
 ```
-Kp = 0.1
-Ki = 0.0007
-Kd = 1.0
+Kp = 0.08
+Ki = 0.0002
+Kd = 1.3
 ```
 
-The `Kd` coefficient seems to introduce some jerky steering around corners, but it's unclear how to mitigate that.
+During the tuning process, the following effects were noticed for various values of the PID coefficients.
+
+### Proportional
+
+If the proportional value was too high, the vehicle would constantly weave across the road in a way that would cause most people to become motion sick quickly.
+If it was set too low, the vehicle would struggle to turn quickly enough for sharper corners, such as those immediately following the bridge.
+
+### Integral
+
+Due to the magnitude of the sum of the errors, this value had to be kept very low, otherwise the steerg angle the resulted would not be between [-1, 1], resulting in the vehicle turning between the maximum left steering angle and the maximum right steering angle and nowhere in between.
+
+### Derivative
+
+Setting this value allowed the vehicle to angle itself more appropriately for coming turns, but sometimes made the steering abrupt if set too high. If set too low, the vehicle could again struggle to turn in time for sharp corners.
 
 ## Requirements
 
