@@ -20,7 +20,8 @@ int main()
   steer_pid.init(0.08, 0.0002, 1.3);
 
   h.onMessage(
-    [&steer_pid](uWS::WebSocket<uWS::SERVER> ws, char * data, size_t length, uWS::OpCode opCode) {
+    [&steer_pid](
+      uWS::WebSocket<uWS::SERVER> ws, char * data, size_t length, uWS::OpCode /*opCode*/) {
       // "42" at the start of the message means there's a websocket message event.
       // The 4 signifies a websocket message
       // The 2 signifies a websocket event
@@ -35,8 +36,8 @@ int main()
           if (event == "telemetry") {
             // j[1] is the data JSON object
             double cte = std::stod(j[1]["cte"].get<string>());
-            double speed = std::stod(j[1]["speed"].get<string>());
-            double angle = std::stod(j[1]["steering_angle"].get<string>());
+            // double speed = std::stod(j[1]["speed"].get<string>());
+            // double angle = std::stod(j[1]["steering_angle"].get<string>());
             steer_pid.update_error(cte);
             double steer_value = steer_pid.total_error();
 
@@ -58,14 +59,15 @@ int main()
       }  // end websocket message if
     });  // end h.onMessage
 
-  h.onConnection([&h](uWS::WebSocket<uWS::SERVER> ws, uWS::HttpRequest req) {
+  h.onConnection([&h](uWS::WebSocket<uWS::SERVER> /*ws*/, uWS::HttpRequest /*req*/) {
     std::cout << "Connected!!!" << std::endl;
   });
 
-  h.onDisconnection([&h](uWS::WebSocket<uWS::SERVER> ws, int code, char * message, size_t length) {
-    ws.close();
-    std::cout << "Disconnected" << std::endl;
-  });
+  h.onDisconnection(
+    [&h](uWS::WebSocket<uWS::SERVER> ws, int /*code*/, char * /*message*/, size_t /*length*/) {
+      ws.close();
+      std::cout << "Disconnected" << std::endl;
+    });
 
   int port = 4567;
   if (h.listen(port)) {
