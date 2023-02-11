@@ -3,8 +3,7 @@ project(udacity_pid_controller)
 
 add_definitions(-std=c++11)
 
-add_compile_options(-Werror)
-# add_compile_options(-Wall -Wextra -pedantic -Werror)
+add_compile_options(-Wall -Wextra -pedantic -Werror)
 
 set(sources src/PID.cpp src/main.cpp)
 
